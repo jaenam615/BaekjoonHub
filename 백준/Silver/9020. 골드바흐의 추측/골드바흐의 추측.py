@@ -15,11 +15,8 @@ def isSosu(num):
 
 for i in a:
     num = int(i)//2
-    A = num
-    B = num
     while True:
-        if isSosu(A) & isSosu(B):
-            print(A,B)
+        if isSosu(num) & isSosu(int(i)-num):
+            print(num,int(i)-num)
             break
-        A -= 1
-        B += 1
+        num -= 1
