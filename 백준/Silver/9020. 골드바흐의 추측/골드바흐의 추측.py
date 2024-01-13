@@ -5,7 +5,7 @@ a = [sys.stdin.readline() for j in range(N)]
 def isSosu(num):
     result = False
     count = 0
-    for i in range(1, int(num / 2)+1):
+    for i in range(1, int(num ** 0.5)+1):
         if num % i == 0:
             count += 1
     if count == 1:
