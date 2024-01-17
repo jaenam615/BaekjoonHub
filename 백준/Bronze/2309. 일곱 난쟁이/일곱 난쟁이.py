@@ -1,21 +1,10 @@
 import sys
-import random
+from itertools import combinations
 
-dwarves=[]
-portion = []
+heights = [int(sys.stdin.readline()) for _ in range(9)]
 
-for i in range(9):
-    height = int(sys.stdin.readline())
-    dwarves.append(height)
-
-while True: 
-    if sum(portion) != 100:
-        random.shuffle(dwarves)
-        portion = dwarves[0:7]
-    else:
+for combination in combinations(heights, 7):
+    if sum(combination) == 100:
+        for height in sorted(combination):
+            print(height)
         break
-
-portion.sort()
-for i in portion:
-    print(i)
-
