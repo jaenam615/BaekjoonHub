@@ -3,11 +3,6 @@ import sys
 V = int(input())
 E = int(input())
 
-# edges = [list(map(int, input().split())) for _ in range(E)]
-
-# for i in range(len(edges)+1):
-#     edges[i + 1] = edges[i]
-# edges[0] = [9]
 
 edges = [[0,0] for _ in range (E+1)]
 
@@ -24,12 +19,6 @@ def find_parent(arr, x):
     arr[x] = find_parent(arr, arr[x])
     return arr[x]
 
-
-# def find_parent(parent, x):
-#     if parent[x] != x:
-#         parent[x] = find_parent(parent, parent[x])
-#     return parent[x]
-
 def union_parent(arr, a, b): 
     a = find_parent(arr, a)
     b = find_parent(arr, b)    
@@ -41,15 +30,14 @@ def union_parent(arr, a, b):
 def same_parent(arr, a, b):
     return find_parent(arr, a) == find_parent(arr, b)
 
-# for a, b in edges:
-#     if not same_parent(virus, a, b):
-#         union_parent(virus, a, b)
+# for edge in edges:
+#     for a, b in edge:
+#         if not same_parent(virus, a, b):
+#             union_parent(virus, a, b)
 
 for i in range(2):
-    for x,y in edges:
-        union_parent(virus,x,y)
+    for a,b in edges:
+        union_parent(virus,a,b)
 
-# print(edges)
-# print(virus)
 
 print(virus.count(1)-1)
