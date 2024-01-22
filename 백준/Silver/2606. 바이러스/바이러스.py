@@ -27,17 +27,13 @@ def union_parent(arr, a, b):
     else:
         arr[a] = b 
 
-def same_parent(arr, a, b):
-    return find_parent(arr, a) == find_parent(arr, b)
 
-# for edge in edges:
-#     for a, b in edge:
-#         if not same_parent(virus, a, b):
-#             union_parent(virus, a, b)
-
-for i in range(2):
+# for a, b in edges:
+#     union_parent(virus, a, b)
+i = 0
+while i <2:
     for a,b in edges:
         union_parent(virus,a,b)
-
+    i += 1
 
 print(virus.count(1)-1)
