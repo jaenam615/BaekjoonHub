@@ -1,35 +1,55 @@
-def find_parent(parent, x):
-    if parent[x] != x:
-        parent[x] = find_parent(parent, parent[x])
+import sys
 
-    return parent[x]
+V = int(input())
+E = int(input())
+
+# edges = [list(map(int, input().split())) for _ in range(E)]
+
+# for i in range(len(edges)+1):
+#     edges[i + 1] = edges[i]
+# edges[0] = [9]
+
+edges = [[0,0] for _ in range (E+1)]
+
+for i in range(E):
+    A, B = map(int, sys.stdin.readline().split())
+    edges[i+1] = [A,B]
+
+virus = [i for i in range(V+1)]
 
 
-def union(parent, a, b):
-    a = find_parent(parent, a)
-    b = find_parent(parent, b)
+def find_parent(arr, x):
+    if arr[x] == x:
+        return x 
+    arr[x] = find_parent(arr, arr[x])
+    return arr[x]
 
+
+# def find_parent(parent, x):
+#     if parent[x] != x:
+#         parent[x] = find_parent(parent, parent[x])
+#     return parent[x]
+
+def union_parent(arr, a, b): 
+    a = find_parent(arr, a)
+    b = find_parent(arr, b)    
     if a < b:
-        parent[b] = a
+        arr[b] = a
     else:
-        parent[a] = b
+        arr[a] = b 
 
+def same_parent(arr, a, b):
+    return find_parent(arr, a) == find_parent(arr, b)
 
-N = int(input())
-M = int(input())
-arr = [list(map(int, input().split())) for _ in range(M)]
-
-parent = [0] * (N+1)
-
-for i in range(1, N+1):
-    parent[i] = i
+# for a, b in edges:
+#     if not same_parent(virus, a, b):
+#         union_parent(virus, a, b)
 
 for i in range(2):
-    for x,y in arr:
-        union(parent,x,y)
+    for x,y in edges:
+        union_parent(virus,x,y)
 
-answer = 0
-for i in range(2,len(parent)):
-    if parent[i] == 1:
-        answer += 1
-print(answer)
+# print(edges)
+# print(virus)
+
+print(virus.count(1)-1)
