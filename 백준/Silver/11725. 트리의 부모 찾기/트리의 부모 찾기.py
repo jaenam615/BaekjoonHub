@@ -1,5 +1,3 @@
-# 시간초과
-
 import sys
 
 sys.setrecursionlimit(10**6)
@@ -13,14 +11,19 @@ for i in range(N - 1):
     adj_list[A].append(B)
     adj_list[B].append(A)
 
-chk = [0] * (N+1)
+chk = [0 for _ in range(N + 1)]
+
 
 
 def dfs(now):
-    for i in adj_list[now]:
-        if not chk[i]:
-            chk[i] = now
-            dfs(i)
+    stk = []
+    stk.append(now)
+    while stk:
+        now = stk.pop()
+        for i in adj_list[now]:
+            if not chk[i]:
+                chk[i] = now
+                stk.append(i)
 
 
 chk[1] = 1
