@@ -1,19 +1,19 @@
-import sys
+N, K = map(int, input().split())
 
-N, K = map(int, sys.stdin.readline().split())
+V = []
 
-A = [int(sys.stdin.readline()) for _ in range(N)]
-A.reverse()
-total_coins =0
+for i in range(N):
+    V.append(int(input()))
 
-for i in range(len(A)):    
-    if A[i] <= K:
-        amount = K//A[i]
-        total_coins += amount
-        K -= (A[i]*amount)
-    else:
+V.reverse()
+count = 0
+
+for value in V:
+    if value > K:
         continue
-    if K == 0:
-        break
+    else:
+        amount = K // value
+        count += amount
+        K -= amount * value
 
-print(total_coins)
+print(count)
