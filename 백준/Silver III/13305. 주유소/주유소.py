@@ -15,8 +15,10 @@ cost = 0
 start = 0
 least = price[0]
 
+minimum = min(price)
+
 for i in range(1, len(price)):
-    if least == min(price):
+    if least == minimum:
         cost = cost + least*sum(dist[start:])
         break
     
@@ -24,7 +26,5 @@ for i in range(1, len(price)):
         cost = cost + least*sum(dist[start:i])
         start = i
         least = price[i]
-
-
 
 print(cost)
