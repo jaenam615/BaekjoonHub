@@ -13,13 +13,17 @@ dist.append(0)
 price = list(map(int, sys.stdin.readline().split()))
 cost = 0
 start = 0
-min = price[0]
+least = price[0]
 
 for i in range(1, len(price)):
-    if price[i] <= min:
-        cost = cost + min*sum(dist[start:i])
+    if least == min(price):
+        cost = cost + least*sum(dist[start:])
+        break
+    
+    if price[i] <= least:
+        cost = cost + least*sum(dist[start:i])
         start = i
-        min = price[i]
+        least = price[i]
 
 
 
