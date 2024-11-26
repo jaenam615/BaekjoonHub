@@ -1,13 +1,16 @@
-def solution(names, yearning, photos):
+def solution(name, yearning, photo):
     answer = []
-    score = 0
+    dct = {}
+    n = len(name)
     
-    for photo in photos:
-        for name in names:
-            if name in photo:
-                score += yearning[names.index(name)]
-        answer.append(score)
-        score = 0
-            
+    for i in range(n):
+        dct[name[i]] = yearning[i]
+    
+    for memory in photo:
+        count = 0
+        for person in memory:
+            if person in dct:
+                count += dct[person]
+        answer.append(count)    
+    
     return answer
-
