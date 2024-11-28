@@ -1,26 +1,31 @@
-import sys
 
-N = int(input())
-area = list(map(int, sys.stdin.readline().split())) 
-M = int(input())
-
-low = 0
-high = max(area)
-mid = (low + high)//2
-
-ans = 0 
-
-def is_possible(mid):
-    return sum(min(a, mid) for a in area) <= M
-
-while low <= high:
-    if is_possible(mid):
-        low = mid + 1
-        ans = mid
-    else:
-        high = mid - 1
-
-    mid = (low + high)//2
+# Online Python - IDE, Editor, Compiler, Interpreter
 
 
-print(ans)
+def binary_search(arr, total):
+    start = 0
+    end = max(arr)
+    target = 0
+    
+    while start <= end:
+        mid = (start + end) // 2
+        current = 0 
+        for i in range(len(arr)):
+            current += min(mid, arr[i])
+        
+        if current <= total:
+            target = mid
+            start = mid + 1 
+        else:
+            end = mid - 1
+    return target
+
+n = int(input())
+arr = list(map(int, input().split()))
+m = int(input())
+
+if sum(arr) <= m:
+    print(max(arr))
+else:
+    print(binary_search(arr , m))
+    
