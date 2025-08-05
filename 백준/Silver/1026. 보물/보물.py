@@ -10,7 +10,6 @@ B = sorted(B, reverse=True)
 
 S = 0
 for i in range(N):
-    product = A[i] * B[i]
-    S += product
+    S += A[i] * B[i]
 
 print(S)
