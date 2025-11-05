@@ -1,19 +1,18 @@
 N, K = map(int, input().split())
 
-V = []
+coins = []
 
-for i in range(N):
-    V.append(int(input()))
+for _ in range(N):
+    coins.append(int(input()))
 
-V.reverse()
+coins.sort(reverse=True)
 count = 0
 
-for value in V:
-    if value > K:
-        continue
-    else:
-        amount = K // value
-        count += amount
-        K -= amount * value
+for coin in coins:
+    tmp = K//coin
+    count += tmp
+    K = K - coin*tmp
+    if K == 0:
+        break
 
 print(count)
