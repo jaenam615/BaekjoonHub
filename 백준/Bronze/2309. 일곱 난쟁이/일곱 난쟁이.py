@@ -1,10 +1,13 @@
-import sys
 from itertools import combinations
 
-heights = [int(sys.stdin.readline()) for _ in range(9)]
+dwarves = []
 
-for combination in combinations(heights, 7):
-    if sum(combination) == 100:
-        for height in sorted(combination):
-            print(height)
+for _ in range(9):
+    dwarves.append(int(input()))
+
+for i in combinations(dwarves, 7):
+    if sum(i) == 100:
+        order = sorted(i)
+        for j in range(len(order)):
+            print(order[j])
         break
